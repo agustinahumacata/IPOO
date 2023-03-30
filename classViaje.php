@@ -57,7 +57,7 @@ public function cargarPasajeros($nombre, $apellido, $dni){
 
 public function __toString()
 {
-    return "codigo: ". $this ->get_codigoviaje(). " destino: ". $this -> get_destino(). "cantMaxPasajeros: ". $this -> get_cantPasajeros(). "pasajeros: ". $this -> get_pasajeros() ;
+    return "codigo: ". $this ->get_codigoviaje(). " destino: ". $this -> get_destino(). " cantMaxPasajeros: ". $this -> get_cantPasajeros() ; 
 }
 
 }
