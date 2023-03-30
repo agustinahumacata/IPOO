@@ -42,21 +42,22 @@ public function set_cantPasajeros($cantPasajerosMax){
     $this -> cantMaxPasajeros = $cantPasajerosMax ;
 }
 
-public function set_pasajeros($pasajeros) {
-    $this -> pasajeros[] =$pasajeros ;
+public function set_pasajeros() {
+    $this -> pasajeros = [] ;
 }
 
 public function cargarPasajeros($nombre, $apellido, $dni){
-    $this -> pasajeros = ["nombre" => $nombre, "apellido" => $apellido, "DNI" => $dni];
+ $this -> pasajeros = ["nombre" => $nombre, "apellido" => $apellido, "DNI" => $dni];
+  //  $pasajero = [] ;
+   // $pasajero["nombre" ];
+   // $pasajero["apellido"] ;
+    //$pasajero["dni"] ;
+   array_push($this -> get_pasajeros(), $this -> pasajeros) ;
 }
 
 public function __toString()
 {
     return "codigo: ". $this ->get_codigoviaje(). " destino: ". $this -> get_destino(). "cantMaxPasajeros: ". $this -> get_cantPasajeros(). "pasajeros: ". $this -> get_pasajeros() ;
 }
-
-//funcion para modificar los datos del viaje
-
-
 
 }
