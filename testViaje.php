@@ -1,9 +1,5 @@
 <?php
 include_once("classViaje.php") ;
-/** funcion que realizar 
- * 
- */
-
 
 
  // PROGRAMA PRINCIPAL // 
@@ -71,7 +67,7 @@ do{
             $rta2 = trim(fgets(STDIN)) ;
     }
             
-             if($rta2 = "a"){
+             if($rta2 == "a"){
                         echo "ingrese nuevo codigo: \n" ;
                        $nuevoCodig = trim(fgets(STDIN)) ;
                  while(is_int($nuevoCodig)){
@@ -79,7 +75,7 @@ do{
                         $nuevoCodig = trim(fgets(STDIN)) ;
             }
             $viaje -> set_codigoviaje($nuevoCodig) ;
-        }elseif($rta2 = "b"){
+        }elseif($rta2 == "b"){
             echo "ingrese destino nuevo: \n" ;
                $nuevoDesti = trim(fgets(STDIN)) ;
                     while (!ctype_alpha($nuevoDesti)){
@@ -87,7 +83,7 @@ do{
                         $nuevoDesti = trim(fgets(STDIN)) ;
                 }
              $viaje -> set_destino($nuevoDesti) ;
-            }elseif($rta2 = "c"){
+            }elseif($rta2 == "c"){
                       echo "ingrese cantidad maxima de pasajeros nueva: \n" ;
                          $nuevoCantMax = trim(fgets(STDIN)) ;
                     while (is_int($nuevoCantMax)){
@@ -97,7 +93,7 @@ do{
                 $viaje -> set_cantPasajeros($nuevoCantMax) ;
             
         }
-
+break ;
       
           case 3 :          // este case ingresa datos del/los pasajeros
 
@@ -114,6 +110,7 @@ do{
                         echo "error : ingrese nombre en letras: \n" ;
                         $nombre = trim(fgets(STDIN)) ;
                 }
+            
     
                      echo "Ingrese apellido: \n" ;
                      $apellido = trim(fgets(STDIN)) ;
@@ -121,6 +118,7 @@ do{
                         echo "error : ingrese apellido en letras: \n" ;
                         $apellido = trim(fgets(STDIN)) ;
                 }
+                
                      echo "ingrese dni: " ;
                      $dni = trim(fgets(STDIN)) ;
                      while (is_int($dni)){
@@ -146,19 +144,49 @@ do{
                     $rta4 = trim(fgets(STDIN)) ;
            } 
             if($rta4 = "a"){ 
-                     echo "ingrese nombre nuevo: \n" ;
-                     $nombreN = trim(fgets(STDIN)) ; 
+                    echo "ingrese dni de la persona que quiere modificar: ";
+                        $dniX= trim(fgets(STDIN)) ;
+                       for($indice = 0 ; $indice < count($pasajeros[]); $indice++){
+                     if($dniX == $pasajeros[$indice]["DNI"]){
+                            echo "ingrese nombre nuevo: \n" ;
+                            $nombreN = trim(fgets(STDIN)) ; 
+                            $viaje -> set_pasajeros($pasajeros) ;
+                            $indice = count($viaje -> pasajeros) ;
+                        }else{
+                            echo "el dni no esta cargado" ;
+                        }
+                    } 
+                   
                     
                  }elseif($rta4 = "b") {
-                    echo "ingrese apellido nuevo: \n" ;
+                    echo "ingrese dni de la persona que quiere modificar: ";
+                    $dniX= trim(fgets(STDIN)) ;
+                for($indice = 0 ; $indice < count($pasajeros[]); $indice++){
+                    if($dniX == $pasajeros[$indice]["DNI"]){
+                        echo "ingrese apellido nuevo: \n" ;
                      $apellidoN = trim(fgets(STDIN)) ;
+                        $viaje -> set_pasajeros($pasajeros) ;
+                        $indice = count($viaje -> pasajeros) ;
+                    }
+                }
+                    
                  }elseif($rta4 = "c"){
-                     echo "ingrese el dni nuevo: \n" ;
-                     $dniN = trim(fgets(STDIN)) ;
+                    echo "ingrese dni de la persona que quiere modificar: ";
+                    $dniX= trim(fgets(STDIN)) ;
+               for($indice = 0 ; $indice < count($pasajeros[]); $indice++){
+                    if($dniX == $pasajeros[$indice]["DNI"]){
+                        echo "ingrese el dni nuevo: \n" ;
+                        $dniN = trim(fgets(STDIN)) ;
+                        $viaje -> set_pasajeros($pasajeros) ;
+                        $indice = count($viaje -> pasajeros) ;
+                    }
+                }
+                    
             }
         break ;
         case 5:         // este case muestra los datos 
             echo $viaje. "\n" ;
+            $viaje -> set_pasajeros () ;
             break ;
         
  
