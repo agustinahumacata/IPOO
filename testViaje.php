@@ -146,43 +146,33 @@ break ;
             if($rta4 = "a"){ 
                     echo "ingrese dni de la persona que quiere modificar: ";
                         $dniX= trim(fgets(STDIN)) ;
-                       for($indice = 0 ; $indice < count($pasajeros[]); $indice++){
-                     if($dniX == $pasajeros[$indice]["DNI"]){
-                            echo "ingrese nombre nuevo: \n" ;
+                    
+                        foreach( $viaje -> set_pasajeros as $dniX){
+                        echo "ingrese nombre nuevo: \n" ;
                             $nombreN = trim(fgets(STDIN)) ; 
                             $viaje -> set_pasajeros($pasajeros) ;
-                            $indice = count($viaje -> pasajeros) ;
-                        }else{
-                            echo "el dni no esta cargado" ;
-                        }
-                    } 
-                   
-                    
+                           
+                        }       
                  }elseif($rta4 = "b") {
                     echo "ingrese dni de la persona que quiere modificar: ";
                     $dniX= trim(fgets(STDIN)) ;
-                for($indice = 0 ; $indice < count($pasajeros[]); $indice++){
-                    if($dniX == $pasajeros[$indice]["DNI"]){
-                        echo "ingrese apellido nuevo: \n" ;
+                foreach($viaje -> set_pasajeros as $dniX){
                      $apellidoN = trim(fgets(STDIN)) ;
                         $viaje -> set_pasajeros($pasajeros) ;
-                        $indice = count($viaje -> pasajeros) ;
+                     
                     }
-                }
-                    
-                 }elseif($rta4 = "c"){
+                }elseif($rta4 = "c"){
                     echo "ingrese dni de la persona que quiere modificar: ";
                     $dniX= trim(fgets(STDIN)) ;
-               for($indice = 0 ; $indice < count($pasajeros[]); $indice++){
-                    if($dniX == $pasajeros[$indice]["DNI"]){
+               foreach($viaje -> set_pasajeros as $dniX){
                         echo "ingrese el dni nuevo: \n" ;
                         $dniN = trim(fgets(STDIN)) ;
                         $viaje -> set_pasajeros($pasajeros) ;
-                        $indice = count($viaje -> pasajeros) ;
+                      
                     }
                 }
-                    
-            }
+                 
+            
         break ;
         case 5:         // este case muestra los datos 
             echo $viaje. "\n" ;
