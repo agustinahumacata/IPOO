@@ -48,10 +48,6 @@ public function set_pasajeros() {
 
 public function cargarPasajeros($nombre, $apellido, $dni){
  $this -> pasajeros = ["nombre" => $nombre, "apellido" => $apellido, "DNI" => $dni];
-  //  $pasajero = [] ;
-   // $pasajero["nombre" ];
-   // $pasajero["apellido"] ;
-    //$pasajero["dni"] ;
    array_push($this -> get_pasajeros(), $this -> pasajeros) ;
 }
 

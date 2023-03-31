@@ -2,15 +2,6 @@
 include_once("classViaje.php") ;
 
 
-/**  // funcion para recorrer arreglo y modificar 
- * 
- * 
- * 
- */
-
-
-
-
 
 
  // PROGRAMA PRINCIPAL // 
@@ -79,8 +70,7 @@ do{
             $rta2 = trim(fgets(STDIN)) ;
     }
             
-             switch($rta2){
-                case "a" :
+             if($rta2 = "a"){
                         echo "ingrese nuevo codigo: \n" ;
                        $nuevoCodig = trim(fgets(STDIN)) ;
                  while(is_int($nuevoCodig)){
@@ -88,31 +78,26 @@ do{
                         $nuevoCodig = trim(fgets(STDIN)) ;
             }
             $viaje -> set_codigoviaje($nuevoCodig) ;
-                    
-                break ;
-                 case "b": 
-                         echo "ingrese destino nuevo: \n" ;
-                         $nuevoDesti = trim(fgets(STDIN)) ;
+        }elseif($rta2 = "b"){
+            echo "ingrese destino nuevo: \n" ;
+               $nuevoDesti = trim(fgets(STDIN)) ;
                     while (!ctype_alpha($nuevoDesti)){
                         echo "error : ingrese destino en letras: \n" ;
                         $nuevoDesti = trim(fgets(STDIN)) ;
                 }
              $viaje -> set_destino($nuevoDesti) ;
-
-                    
-            break ;
-                case "c" :
-                         echo "ingrese cantidad maxima de pasajeros nueva: \n" ;
+            }elseif($rta2 = "c"){
+                      echo "ingrese cantidad maxima de pasajeros nueva: \n" ;
                          $nuevoCantMax = trim(fgets(STDIN)) ;
                     while (is_int($nuevoCantMax)){
                          echo "error : ingrese cantidad de pasajeros en forma numerica/entero: \n" ;
                          $nuevoCantMax = trim(fgets(STDIN)) ;
                 } 
                 $viaje -> set_cantPasajeros($nuevoCantMax) ;
-            break ;
+            
         }
 
-        break ;
+      
           case 3 :          ///////// INGRESE DATOS DEL/LOS PASAJERO ///////////
 
          echo "cuantos pasajeros desea ingresar: "; 
@@ -147,7 +132,7 @@ do{
         
         break ;
         case 4 :            /////////// MODIFIQUE DATOS DEL PASAJERO ////////////// 
-         // agregar funcion para recorrer array 
+        
          
             echo "que datos desea modificar?: \n" ;
             echo "a) Nombre. \n" ;
@@ -162,7 +147,8 @@ do{
                  case "a" : 
                      echo "ingrese nombre nuevo: \n" ;
                      $nombreN = trim(fgets(STDIN)) ; 
-                    
+                
+                
         break ;
                 case "b" :
                     echo "ingrese apellido nuevo: \n" ;
