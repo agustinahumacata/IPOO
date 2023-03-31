@@ -1,6 +1,8 @@
 <?php
 include_once("classViaje.php") ;
-
+/** funcion que realizar 
+ * 
+ */
 
 
 
@@ -32,7 +34,7 @@ do{
     $pasajeros = 0 ;
     
     switch ($opcion){
-        case 1:             ///////// cargar informacion del viaje /////
+        case 1:            // case que carga la informacion del viaje 
     
          echo "ingrese codigo: \n" ;
              $codig = trim(fgets(STDIN)) ;
@@ -46,8 +48,7 @@ do{
        while (!ctype_alpha($dest)){
              echo "error : ingrese destino en letras: " ;
              $dest = trim(fgets(STDIN)) ;
-     }
-       
+     } 
         echo "ingrese cantidad de pasajeros: \n" ;
          $cantPasaj = trim(fgets(STDIN)) ;
         while (is_int($cantPasaj)){
@@ -59,7 +60,7 @@ do{
      
         break ;
         
-        case 2:               //////// MODIFICAR DATOS DEL VIAJE///////
+        case 2:              // este case modifica viaje de datos
              echo "que datos desea modificar?: \n" ;
              echo "a) codigo: \n" ;
              echo "b) destino \n" ;
@@ -98,7 +99,7 @@ do{
         }
 
       
-          case 3 :          ///////// INGRESE DATOS DEL/LOS PASAJERO ///////////
+          case 3 :          // este case ingresa datos del/los pasajeros
 
          echo "cuantos pasajeros desea ingresar: "; 
          $cantPasajeros = trim(fgets(STDIN)) ;
@@ -127,11 +128,12 @@ do{
                         $dni = trim(fgets(STDIN)) ;
                } 
                 $pasajeros++ ;
+                $viaje -> cargarPasajeros($nombre, $apellido, $dni) ;
                     }
-                    $viaje -> cargarPasajeros($nombre, $apellido, $dni) ;
+                  
         
         break ;
-        case 4 :            /////////// MODIFIQUE DATOS DEL PASAJERO ////////////// 
+        case 4 :            // este case modifica datos del/los pasajeros
         
          
             echo "que datos desea modificar?: \n" ;
@@ -143,26 +145,20 @@ do{
                     echo "error - ingrese una opcion valida \n" ;
                     $rta4 = trim(fgets(STDIN)) ;
            } 
-            switch($rta4){
-                 case "a" : 
+            if($rta4 = "a"){ 
                      echo "ingrese nombre nuevo: \n" ;
                      $nombreN = trim(fgets(STDIN)) ; 
-                
-                
-        break ;
-                case "b" :
+                    
+                 }elseif($rta4 = "b") {
                     echo "ingrese apellido nuevo: \n" ;
                      $apellidoN = trim(fgets(STDIN)) ;
-        break ;
-                 case "c" :
+                 }elseif($rta4 = "c"){
                      echo "ingrese el dni nuevo: \n" ;
                      $dniN = trim(fgets(STDIN)) ;
-        break ;
             }
         break ;
-        case 5:         ///////////// MOSTRAR LOS DATOS ////////////////
+        case 5:         // este case muestra los datos 
             echo $viaje. "\n" ;
-            $viaje -> set_cargarPasajeros() ;
             break ;
         
  

@@ -47,13 +47,16 @@ public function set_pasajeros() {
 }
 
 public function cargarPasajeros($nombre, $apellido, $dni){
- $this -> pasajeros = ["nombre" => $nombre, "apellido" => $apellido, "DNI" => $dni];
+ $this -> pasajeros = [] ;
+ $this -> pasajeros = ["nombre" => $nombre] ;
+ $this -> pasajeros = ["apellido" => $apellido] ;
+ $this -> pasajeros = ["DNI" => $dni ] ;
    array_push($this -> get_pasajeros(), $this -> pasajeros) ;
 }
 
 public function __toString()
 {
-    return "codigo: ". $this ->get_codigoviaje(). " destino: ". $this -> get_destino(). " cantMaxPasajeros: ". $this -> get_cantPasajeros() ; 
+    return "codigo: ". $this ->get_codigoviaje(). " destino: ". $this -> get_destino(). " cantMaxPasajeros: ". $this -> get_cantPasajeros(). "pasajeross" ; 
 }
 
 }
