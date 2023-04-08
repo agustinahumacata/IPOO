@@ -3,6 +3,7 @@ include_once("classViaje.php") ;
 
 
  // PROGRAMA PRINCIPAL // 
+// arreglo 
 
 do{
         echo "-------Menu de opciones------- 
@@ -109,6 +110,7 @@ break ;
                      while (!ctype_alpha($nombre)){
                         echo "error : ingrese nombre en letras: \n" ;
                         $nombre = trim(fgets(STDIN)) ;
+                        
                 }
             
     
@@ -126,8 +128,8 @@ break ;
                         $dni = trim(fgets(STDIN)) ;
                } 
                 $pasajeros++ ;
-                $viaje -> cargarPasajeros($nombre, $apellido, $dni) ;
-                    }
+                $viaje = $this -> cargarPasajeros($nombre, $apellido, $dni) ;
+            }
                   
         
         break ;
@@ -146,30 +148,21 @@ break ;
             if($rta4 = "a"){ 
                     echo "ingrese dni de la persona que quiere modificar: ";
                         $dniX= trim(fgets(STDIN)) ;
-                    
-                        foreach( $viaje -> set_pasajeros as $dniX){
-                        echo "ingrese nombre nuevo: \n" ;
-                            $nombreN = trim(fgets(STDIN)) ; 
-                            $viaje -> set_pasajeros($pasajeros) ;
+                         $viaje -> buscarPasajeros($dniX) ;
                            
-                        }       
+                              
                  }elseif($rta4 = "b") {
                     echo "ingrese dni de la persona que quiere modificar: ";
                     $dniX= trim(fgets(STDIN)) ;
-                foreach($viaje -> set_pasajeros as $dniX){
-                     $apellidoN = trim(fgets(STDIN)) ;
-                        $viaje -> set_pasajeros($pasajeros) ;
+                        $viaje -> buscarPasajeros($dniX) ;
                      
-                    }
+                    
                 }elseif($rta4 = "c"){
                     echo "ingrese dni de la persona que quiere modificar: ";
                     $dniX= trim(fgets(STDIN)) ;
-               foreach($viaje -> set_pasajeros as $dniX){
-                        echo "ingrese el dni nuevo: \n" ;
-                        $dniN = trim(fgets(STDIN)) ;
-                        $viaje -> set_pasajeros($pasajeros) ;
+                        $viaje -> buscarPasajeros($dniX) ;
                       
-                    }
+                    
                 }
                  
             
