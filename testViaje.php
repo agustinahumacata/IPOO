@@ -3,7 +3,7 @@ include_once("classViaje.php") ;
 
 
  // PROGRAMA PRINCIPAL // 
-// arreglo 
+$pasajerosS = [] ;
 
 do{
         echo "-------Menu de opciones------- 
@@ -128,7 +128,8 @@ break ;
                         $dni = trim(fgets(STDIN)) ;
                } 
                 $pasajeros++ ;
-                $viaje = $this -> cargarPasajeros($nombre, $apellido, $dni) ;
+                $pasajerosS = ["nombre" => $nombre, "apellido" => $apellido, "dni" => $dni] ;
+                $viaje = $this -> get_pasajeros [$pasajerosS] ; // consultar 
             }
                   
         
@@ -148,19 +149,19 @@ break ;
             if($rta4 = "a"){ 
                     echo "ingrese dni de la persona que quiere modificar: ";
                         $dniX= trim(fgets(STDIN)) ;
-                         $viaje -> buscarPasajeros($dniX) ;
+                         $viaje -> buscarPasajero($dniX) ;
                            
                               
                  }elseif($rta4 = "b") {
                     echo "ingrese dni de la persona que quiere modificar: ";
                     $dniX= trim(fgets(STDIN)) ;
-                        $viaje -> buscarPasajeros($dniX) ;
+                        $viaje -> buscarPasajero($dniX) ;
                      
                     
                 }elseif($rta4 = "c"){
                     echo "ingrese dni de la persona que quiere modificar: ";
                     $dniX= trim(fgets(STDIN)) ;
-                        $viaje -> buscarPasajeros($dniX) ;
+                        $viaje -> buscarPasajero($dniX) ;
                       
                     
                 }

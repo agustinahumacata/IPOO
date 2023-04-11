@@ -47,7 +47,7 @@ public function set_pasajeros() {
 }
 
 public function buscarPasajero($dniX){
-$pasajerosS = $this -> get_pasajeros() ;   //poner donde buscar el arreglo
+$pasajerosS = $this -> get_pasajeros() ;   
 $i = 0 ;
 $bandera = false; 
 while($i<count($pasajerosS) && !$bandera){
@@ -56,7 +56,7 @@ while($i<count($pasajerosS) && !$bandera){
 }  //arreglar 
 return $i ;
 }
-public function modificarPasajeros($dniX, $pApellido, $pNombre, $pDni){
+public function modificarPasajeros ($pApellido, $pNombre, $pDni){
     $indice = $this ->buscarPasajero($pDni) ;
     if($indice > 0){
         $pasajeros= $this -> get_pasajeros() ;
