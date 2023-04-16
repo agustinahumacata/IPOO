@@ -3,7 +3,8 @@ include_once("classViaje.php") ;
 
 
  // PROGRAMA PRINCIPAL // 
-$pasajerosS = [] ;
+
+$pasajeros = 0 ;
 
 do{
         echo "-------Menu de opciones------- 
@@ -104,6 +105,7 @@ break ;
             echo "error : ingrese nuevamente cantidad de pasajeros \n" ;
             $cantPasajeros = trim(fgets(STDIN)) ;
    } 
+
            while($pasajeros < $cantPasajeros){
                   echo "Ingrese nombre: \n" ;
                      $nombre = trim(fgets(STDIN)) ;
@@ -127,9 +129,8 @@ break ;
                         echo "error : ingrese dni en forma numerica/entero: \n" ;
                         $dni = trim(fgets(STDIN)) ;
                } 
-                $pasajeros++ ;
-                $pasajerosS = ["nombre" => $nombre, "apellido" => $apellido, "dni" => $dni] ;
-                $viaje = $this -> get_pasajeros [$pasajerosS] ; // consultar 
+               $pasajeros++ ;
+                $viaje -> cargarPasajeros($nombre, $apellido, $dni) ;
             }
                   
         
@@ -146,31 +147,41 @@ break ;
                     echo "error - ingrese una opcion valida \n" ;
                     $rta4 = trim(fgets(STDIN)) ;
            } 
-            if($rta4 = "a"){ 
+            switch($rta4){
+                case "a"  :
                     echo "ingrese dni de la persona que quiere modificar: ";
                         $dniX= trim(fgets(STDIN)) ;
                          $viaje -> buscarPasajero($dniX) ;
+                    echo "Ingrese nuevo nombre: \n";
+                    $datoNuevo = trim(fgets(STDIN)) ;
+                    $viaje -> modificarPasajeros($datoNuevo, $dniX, $rta4) ;
                            
-                              
-                 }elseif($rta4 = "b") {
+                     break ;         
+                 case "b" :
                     echo "ingrese dni de la persona que quiere modificar: ";
                     $dniX= trim(fgets(STDIN)) ;
                         $viaje -> buscarPasajero($dniX) ;
+                    echo "Ingrese nuevo apellido: \n";
+                        $datoNuevo = trim(fgets(STDIN)) ;
+                        $viaje -> modificarPasajeros( $dniX, $datoNuevo,$rta4) ;
                      
-                    
-                }elseif($rta4 = "c"){
+                    break ;
+               case"c" :
                     echo "ingrese dni de la persona que quiere modificar: ";
                     $dniX= trim(fgets(STDIN)) ;
                         $viaje -> buscarPasajero($dniX) ;
-                      
+                    echo "Ingrese nuevo DNI: \n";
+                        $datoNuevo = trim(fgets(STDIN)) ;
+                        $viaje -> modificarPasajeros($dniX, $datoNuevo, $rta4) ;
                     
                 }
+        
                  
             
         break ;
         case 5:         // este case muestra los datos 
-            echo $viaje. "\n" ;
-            $viaje -> set_pasajeros () ;
+            $viaje -> mostrarDatosPasajero() ;
+            echo $viaje. "\n" ; 
             break ;
         
  

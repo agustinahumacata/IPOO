@@ -10,7 +10,7 @@ public function __construct($codiViaje, $destinoX, $cantPasajerosMax){
     $this -> codigoViaje = $codiViaje ;
     $this -> destino = $destinoX ;
     $this -> cantMaxPasajeros = $cantPasajerosMax ;
-    $this -> pasajeros = [] ; 
+    $this -> pasajeros = Array() ; 
 }
 
 public function get_codigoviaje(){
@@ -42,8 +42,8 @@ public function set_cantPasajeros($cantPasajerosMax){
     $this -> cantMaxPasajeros = $cantPasajerosMax ;
 }
 
-public function set_pasajeros() {
-    $this -> pasajeros = [] ;
+public function set_pasajeros($pasajeros) {
+    $this -> pasajeros = $pasajeros ;
 }
 
 public function buscarPasajero($dniX){
@@ -51,43 +51,70 @@ $pasajerosS = $this -> get_pasajeros() ;
 $i = 0 ;
 $bandera = false; 
 while($i<count($pasajerosS) && !$bandera){
-    $pasajerosS[$i]["dni"] == $dniX ;
+    $bandera = $pasajerosS[$i]["DNI"] == $dniX ;
+    // poner if para que si no encuentra incremente el i y si encuentra, que salga 
     $i++ ;
-}  //arreglar 
-return $i ;
+} 
+    return $i - 1 ;
 }
-public function modificarPasajeros ($pApellido, $pNombre, $pDni){
-    $indice = $this ->buscarPasajero($pDni) ;
-    if($indice > 0){
-        $pasajeros= $this -> get_pasajeros() ;
-        $pasajeros[$indice]["nombre"] = $pNombre;
-        $pasajeros[$indice]["apellido"] = $pApellido;
-        $pasajeros[$indice]["dni"] = $pDni; 
+
+public function modificarPasajeros ($pDatoNuevo, $pDniBuscado,$rta){
+    $indice = $this ->buscarPasajero($pDniBuscado) ;
+    switch($rta){
+        case "a" :
+            if($indice >= 0){ //entra si lo encuentra 
+                $pasajeros= $this -> get_pasajeros() ;
+                $pasajeros[$indice]=["nombre" => $pDatoNuevo, "apellido" => $pasajeros[$indice]["apellido"],"DNI" => $pasajeros[$indice]["DNI"]];
+                $this -> set_pasajeros($pasajeros) ;
+            }
+
+            break ;
+        case "b" :
+            if($indice >= 0){ //entra si lo encuentra 
+                $pasajeros= $this -> get_pasajeros() ;
+                $pasajeros[$indice]= ["nombre" => $pasajeros[$indice]["nombre"],"apellido" => $pDatoNuevo, "DNI" => $pasajeros[$indice]["DNI"]];
+                $this -> set_pasajeros($pasajeros) ; 
+            }
+            break ;
+        case "c" :
+            if($indice >= 0){ //entra si lo encuentra 
+                $pasajeros= $this -> get_pasajeros() ;
+                $pasajeros[$indice]=["nombre" => $pasajeros[$indice]["nombre"], "apellido" => $pasajeros[$indice]["apellido"], "DNI" => $pDatoNuevo]; 
+                $this -> set_pasajeros($pasajeros) ; 
+            }
+            break ;
+            
     }
-    return $indice ;
 }
 
 public function mostrarDatosPasajero(){
     $cadena = "" ;
-    $cantPasaj = $this -> get_Pasajeros();
-        for($i = 0 ; $i<count($cantPasaj); $i++){ //preg
-            $nombre = $cantPasaj ; // terminar // preg
+    $colP = $this -> get_Pasajeros();
+        for($i = 0 ; $i<count($colP); $i++){ 
+            $nombre = $colP[$i]["nombre"] . "\n" ;
+            $apellido = $colP[$i]["apellido"]. "\n" ;
+            $dni = $colP[$i]["DNI"]. "\n" ;
+            
+         $cadena = $cadena . "nombre: $nombre apellido: $apellido dni: $dni" ;
         } 
+        return $cadena ;
 }
 
 public function cargarPasajeros($nombre, $apellido, $dni){
-    $PasajerosS[0] = ["nombre" => $nombre,"apellido" => $apellido, "DNI" => $dni] ;
-
-      array_push($this -> get_pasajeros(), ["nombre" => $nombre,"apellido" => $apellido, "DNI" => $dni] ) ; 
-       
+    $colP = $this->get_pasajeros();
+    $nuevoPasajero = ["nombre" => $nombre,"apellido" => $apellido, "DNI" => $dni];
+    array_push($colP, $nuevoPasajero); 
+    $this->set_pasajeros($colP);  
+    print_r($colP) ;
 }
 public function __toString()
 {
-    $cadena = "codigo: ". $this ->get_codigoviaje().
-              " destino: ". $this -> get_destino(). 
-              " cantMaxPasajeros: ". $this -> get_cantPasajeros() ; 
-           // ($this -> mostrarDatosPasajeros()) ;// con esto muestro el arreglo 
-    return $cadena ;
+    $cadena = $this -> mostrarDatosPasajero() ;
+    return  "codigo: ". $this ->get_codigoviaje().
+              "\n destino: ". $this -> get_destino(). 
+              "\n cantMaxPasajeros: ". $this -> get_cantPasajeros().
+            "\n datos del pasajero: " . $cadena ;
+    
 }
 
 }
